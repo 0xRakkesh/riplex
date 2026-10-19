@@ -2,10 +2,11 @@ import os
 from fastapi import FastAPI
 from riplex.schemas.research import RequestResearch
 from dotenv import load_dotenv
+from riplex.services.agent import run_agent
 
 load_dotenv()
 
-app = FastAPI()
+app = FastAPI(title="Research Agent APIs")
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
@@ -17,6 +18,7 @@ def health():
 def research(request : RequestResearch):
     return {
      "question": request.question,
-     "message": "Research request accepted",
+     "answer": run_agent(request.question),
     }
+
 

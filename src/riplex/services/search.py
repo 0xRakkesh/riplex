@@ -14,7 +14,7 @@ def search_web(query: str, num_results: int = 5) -> list[Source]:
             source = Source(
                 title=results.get("title"),
                 url=results.get("url"),
-                snippet=(results.get("content") or "")[:10000],
+                snippet=(results.get("content") or "No content available")[:2000],
                 publication_date=results.get("publication_date"),
             )
             sources.append(source)

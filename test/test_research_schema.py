@@ -77,6 +77,15 @@ def test_source_rejects_oversized_snippet():
         )
 
 
+def test_source_at_max_length_snippet():
+    source = Source(
+        title="Example",
+        url="https://example.com",
+        snippet="a" * 2000,
+    )
+    assert len(source.snippet) == 2000
+
+
 def test_source_allows_missing_publication_date():
     source = Source(
         title="Example",
